@@ -11,16 +11,9 @@ public class PlantScript : MonoBehaviour
     public float time;
 
     public bool burning;
-    public enum ObjectState
-    {
-        MaxGrowth,
-        Growth,
-        Decay,
-        MaxDecay
-    }
+    
 
-    public ObjectState currentState;
-
+   
     void Start()
     {
 
@@ -33,7 +26,6 @@ public class PlantScript : MonoBehaviour
         if (time >=1)
         {
             mGrowth();
-            
             Grow();
             DecayFunction();
             MaxDecayFunction();
@@ -139,7 +131,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.nosun == true)
             {
-                plantGrowth-= 1;
+                plantGrowth -= 1;
             }
 
         }
@@ -147,7 +139,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.normalsun == true)
             {
-                plantGrowth-= 1;
+                plantGrowth -= 1;
             }
 
         }
@@ -155,7 +147,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.normalsun == true)
             {
-                plantGrowth-= 1;
+                plantGrowth -= 1;
             }
 
         }
@@ -167,7 +159,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.nosun == true)
             {
-                plantGrowth =- 2;
+                plantGrowth -= 2;
             }
 
         }
@@ -175,7 +167,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.nosun == true)
             {
-                plantGrowth =- 2;
+                plantGrowth -= 2;
             }
 
         }
@@ -183,7 +175,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.maxsun == true)
             {
-                plantGrowth =- 2;
+                plantGrowth -= 2;
             }
 
         }
@@ -191,7 +183,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.maxsun == true)
             {
-                plantGrowth -=       2;
+                plantGrowth -= 2;
             }
 
         }

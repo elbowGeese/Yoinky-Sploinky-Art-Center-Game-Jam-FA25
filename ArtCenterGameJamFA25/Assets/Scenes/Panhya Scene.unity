@@ -177,7 +177,6 @@ MonoBehaviour:
   wantsNoSun: 1
   time: 0
   burning: 0
-  currentState: 0
 --- !u!114 &404119141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,7 +615,7 @@ MonoBehaviour:
   maxsun: 0
   normalsun: 0
   minsun: 0
-  nosun: 1
+  nosun: 0
   State: 0
 --- !u!1 &1907743449
 GameObject:
