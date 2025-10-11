@@ -81,6 +81,7 @@ public class PlantScript : MonoBehaviour
             {
 
                 plantGrowth += 2;
+                moisture -= 1;
 
             }
         }  
@@ -89,6 +90,7 @@ public class PlantScript : MonoBehaviour
                 if (SunlightScript.normalsun == true)
                 {
                     plantGrowth += 2;
+                    moisture -= 1;
                 }
 
             }
@@ -97,7 +99,8 @@ public class PlantScript : MonoBehaviour
                 if (SunlightScript.minsun == true)
                 {
                     plantGrowth += 2;
-                }
+                moisture += 1;
+            }
 
             }
             if (wantsNoSun == true)
@@ -105,7 +108,8 @@ public class PlantScript : MonoBehaviour
                 if (SunlightScript.nosun == true)
                 {
                     plantGrowth += 2;
-                }
+                moisture += 1;
+            }
 
             }
     }
@@ -118,6 +122,7 @@ public class PlantScript : MonoBehaviour
             if (SunlightScript.normalsun == true)
             {
                 plantGrowth += 1;
+                moisture -= 1;
             }
 
         }
@@ -126,6 +131,7 @@ public class PlantScript : MonoBehaviour
             if (SunlightScript.minsun == true)
             {
                 plantGrowth += 1;
+                moisture += 1;
             }
 
         }
@@ -134,8 +140,18 @@ public class PlantScript : MonoBehaviour
             if (SunlightScript.nosun == true)
             {
                 plantGrowth +=1 ;
+                moisture += 1;
             }
 
+
+        }
+        if (wantsNoSun == true)
+        {
+            if (SunlightScript.minsun == true)
+            {
+                plantGrowth += 1;
+                moisture += 1;
+            }
         }
         
     }
