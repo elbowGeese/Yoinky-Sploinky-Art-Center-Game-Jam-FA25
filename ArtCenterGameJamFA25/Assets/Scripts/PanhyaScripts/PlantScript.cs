@@ -16,8 +16,7 @@ public class PlantScript : MonoBehaviour
     public bool isBurnt;
     public bool isDrowned;
     public int plantGrowthMax;
-     
-   
+    
     
 
    
@@ -29,6 +28,7 @@ public class PlantScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         time += Time.deltaTime;
         if (time >=1)
         {
@@ -218,5 +218,7 @@ public class PlantScript : MonoBehaviour
 
         }
     }
+
+    
 }
 
