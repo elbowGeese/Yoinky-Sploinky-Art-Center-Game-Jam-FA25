@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlantScript : MonoBehaviour
 {
     public SunlightStates SunlightScript;
@@ -16,6 +16,7 @@ public class PlantScript : MonoBehaviour
     public bool isBurnt;
     public bool isDrowned;
     public int plantGrowthMax;
+     
    
     
 
