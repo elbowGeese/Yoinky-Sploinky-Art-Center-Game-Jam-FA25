@@ -3,8 +3,8 @@ using UnityEngine.UI;
 public class MoistBar : MonoBehaviour
 {
     public PlantScript plantScript;
-    public int maximum;
-    public int growth;
+    public float maximum;
+    public float growth;
     //public Image mask;
     public Slider slider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
