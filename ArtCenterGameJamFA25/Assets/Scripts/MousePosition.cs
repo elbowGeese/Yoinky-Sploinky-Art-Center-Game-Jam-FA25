@@ -7,18 +7,18 @@ public class MousePosition : MonoBehaviour
 {
     public Vector2 screenPosition;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public bool isMouseDown;
 
     // Update is called once per frame
     void Update()
     {
        //screenPosition = Input.mousePosition;  //this is old input system
       screenPosition =  Mouse.current.position.ReadValue();
-      
+
+        isMouseDown = Mouse.current.leftButton.isPressed;
 
     }
+
+
+
 }
