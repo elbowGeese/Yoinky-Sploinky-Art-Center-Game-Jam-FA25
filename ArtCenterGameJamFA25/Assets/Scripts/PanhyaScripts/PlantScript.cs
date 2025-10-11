@@ -38,17 +38,17 @@ public class PlantScript : MonoBehaviour
             time = 0;
         }
 
-        if (moisture == maxMoist)
+        if (moisture >= maxMoist)
         {
             isDrowned = true;
 
         }
 
-        if (moisture == minMoist)
+        if (moisture <= minMoist)
         {
             isBurnt = true;
         }
-        if (plantGrowth == plantGrowthMax)
+        if (plantGrowth >= plantGrowthMax)
         {
             isGrown = true;
         }
