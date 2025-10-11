@@ -83,6 +83,7 @@ public class PlantScript : MonoBehaviour
                 plantGrowth += 2;
 
             }
+        }  
             if (wantsSun == true)
             {
                 if (SunlightScript.normalsun == true)
@@ -107,8 +108,8 @@ public class PlantScript : MonoBehaviour
                 }
 
             }
-        }
     }
+    
 
     void Grow()
     {
