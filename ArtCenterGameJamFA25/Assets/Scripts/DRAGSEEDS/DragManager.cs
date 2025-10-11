@@ -6,9 +6,9 @@ public class DragManager : MonoBehaviour
 {
     [Header("Pit Detection")]
     [SerializeField] private LayerMask pitLayer;
-    [SerializeField] private float pitSnapRadius = 0.6f;   // 开始吸附的距离
-    [SerializeField] private float magnetStrength = 0.35f; // 吸附强度
-    [SerializeField] private float placeSnapTime = 0.12f;  // 吸附动画时间
+    [SerializeField] private float pitSnapRadius = 0.6f;   
+    [SerializeField] private float magnetStrength = 0.35f; 
+    [SerializeField] private float placeSnapTime = 0.12f;  
 
     private Camera cam;
     private SeedInstance draggingSeed;
@@ -21,7 +21,7 @@ public class DragManager : MonoBehaviour
 
     private void Update()
     {
-        // === 输入检测 ===
+     
         Vector2 screenPos;
         if (Touchscreen.current != null && Touchscreen.current.touches.Count > 0)
         {
@@ -48,7 +48,7 @@ public class DragManager : MonoBehaviour
         bool up = (Mouse.current != null && Mouse.current.leftButton.wasReleasedThisFrame)
                     || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasReleasedThisFrame);
 
-        // === 开始拖拽 ===
+       
         if (down && draggingSeed == null)
         {
             var hit = Physics2D.Raycast(worldMouse, Vector2.zero);
@@ -63,7 +63,6 @@ public class DragManager : MonoBehaviour
             }
         }
 
-        // === 拖拽中（磁吸 + 高亮）===
         if (held && draggingSeed != null)
         {
             PitSlot nearest = FindNearestPit(worldMouse, pitSnapRadius, pitLayer, out float sqrDist);
@@ -86,7 +85,7 @@ public class DragManager : MonoBehaviour
             draggingSeed.UpdateDragging(target);
         }
 
-        // === 松手：放置或飞回 ===
+        
         if (up && draggingSeed != null)
         {
             if (hoverPit != null && !hoverPit.occupied)
@@ -104,7 +103,7 @@ public class DragManager : MonoBehaviour
         }
     }
 
-    // 找最近的坑
+   
     private PitSlot FindNearestPit(Vector3 pos, float radius, LayerMask layer, out float bestSqr)
     {
         bestSqr = float.MaxValue;
@@ -120,7 +119,7 @@ public class DragManager : MonoBehaviour
         return best;
     }
 
-    // 平滑吸附再放置
+    
     private IEnumerator SnapThenPlace(SeedInstance seed, PitSlot pit, float duration)
     {
         Vector3 start = seed.transform.position;
