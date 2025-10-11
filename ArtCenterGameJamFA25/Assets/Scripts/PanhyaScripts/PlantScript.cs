@@ -9,8 +9,14 @@ public class PlantScript : MonoBehaviour
     public bool wantsMinSun;
     public bool wantsNoSun;
     public float time;
-
-    public bool burning;
+    public int minMoist;
+    public int maxMoist;
+    public int moisture;
+    public bool isGrown;
+    public bool isBurnt;
+    public bool isDrowned;
+    public int plantGrowthMax;
+   
     
 
    
@@ -30,6 +36,21 @@ public class PlantScript : MonoBehaviour
             DecayFunction();
             MaxDecayFunction();
             time = 0;
+        }
+
+        if (moisture == maxMoist)
+        {
+            isDrowned = true;
+
+        }
+
+        if (moisture == minMoist)
+        {
+            isBurnt = true;
+        }
+        if (plantGrowth == plantGrowthMax)
+        {
+            isGrown = true;
         }
         
         //switch (currentState)
@@ -123,7 +144,8 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.minsun == true)
             {
-                plantGrowth -= 1;
+                moisture += 1;
+                //plantGrowth -= 1;
             }
 
         }
@@ -131,7 +153,8 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.nosun == true)
             {
-                plantGrowth -= 1;
+                //plantGrowth -= 1;
+                moisture += 1;
             }
 
         }
@@ -139,7 +162,8 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.normalsun == true)
             {
-                plantGrowth -= 1;
+                //plantGrowth -= 1;
+                moisture -= 1;
             }
 
         }
@@ -147,7 +171,8 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.normalsun == true)
             {
-                plantGrowth -= 1;
+                moisture -= 1;
+                //plantGrowth -= 1;
             }
 
         }
@@ -159,7 +184,8 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.nosun == true)
             {
-                plantGrowth -= 2;
+                moisture += 2;
+                //plantGrowth -= 2;
             }
 
         }
@@ -167,7 +193,8 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.nosun == true)
             {
-                plantGrowth -= 2;
+                moisture += 2;
+                //plantGrowth -= 2;
             }
 
         }
@@ -175,7 +202,8 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.maxsun == true)
             {
-                plantGrowth -= 2;
+                moisture -= 2;
+                //plantGrowth -= 2;
             }
 
         }
@@ -183,7 +211,8 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.maxsun == true)
             {
-                plantGrowth -= 2;
+                moisture -= 2;
+                //plantGrowth -= 2;
             }
 
         }
