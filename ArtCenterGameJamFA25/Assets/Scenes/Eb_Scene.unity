@@ -172,8 +172,6 @@ MonoBehaviour:
   sunHover: {fileID: 772059569}
   moonHover: {fileID: 1746327333}
   distanceMult: 0.46
-  maxHeight: 450
-  minHeight: -450
 --- !u!1 &229022422
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ea9f4039bebf564a95f88fcd241db19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a4033160324cd94cae4ae405cdde254, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -496,6 +494,7 @@ MonoBehaviour:
   nighttimeImage: {fileID: 1687975107}
   visibleColor: {r: 1, g: 1, b: 1, a: 1}
   invisibleColor: {r: 1, g: 1, b: 1, a: 0}
+  timeToFade: 0.22
 --- !u!114 &656498621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9896072, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1109,7 +1108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.6548495, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1240,7 +1239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bb457fdb3d9a2cf419bab65444802dd8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2eff945fe8dde0946a3de477f4cd36eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

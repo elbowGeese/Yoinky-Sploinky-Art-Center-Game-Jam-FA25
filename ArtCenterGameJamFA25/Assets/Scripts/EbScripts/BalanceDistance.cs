@@ -19,7 +19,7 @@ public class BalanceDistance : MonoBehaviour
     private float maxHSminS = 0.5f;
     private float maxNminHS = 0.25f;
 
-    public float maxHeight, minHeight;
+    private float maxHeight, minHeight;
 
     private void Start()
     {
@@ -33,6 +33,8 @@ public class BalanceDistance : MonoBehaviour
     void Update()
     {
         idealDistance = ((thisTransform.localScale.x * Screen.width) / 2) * distanceMult;
+        maxHeight = thisTransform.position.y + idealDistance;
+        minHeight = thisTransform.position.y - idealDistance;
 
         switch (state)
         {
