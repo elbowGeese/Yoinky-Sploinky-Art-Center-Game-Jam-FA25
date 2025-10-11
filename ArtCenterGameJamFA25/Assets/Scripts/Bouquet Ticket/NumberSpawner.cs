@@ -8,15 +8,21 @@ public class NumberSpawner : MonoBehaviour
 
     public RandomNumberGenerator randomNumberGeneratorReference;
 
+    public int amountNeeded;
+
 
     void Start()
     {
-        string number = GetRandomNumber();
-        numberDisplay.text = number;
+        //string number = GetRandomNumber();
+        amountNeeded = GetRandomNumber();
+
+        //numberDisplay.text = amountNeeded.ToString();
+
+        displayNumber(0);
 
     }
 
-    public string GetRandomNumber()
+    public int GetRandomNumber()
     {
         if (randomNumberGeneratorReference != null)
         {
@@ -25,8 +31,15 @@ public class NumberSpawner : MonoBehaviour
         else
         {
             Debug.LogWarning("halp");
-            return "I return nothin";
+            return 0;
         }
+    }
+
+    public void displayNumber( int sexy)
+    {
+        string toDisplay = sexy + " / " + amountNeeded;
+
+        numberDisplay.text = toDisplay;
     }
 
 }
