@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class GrowthBar : MonoBehaviour
 {
     public PlantScript plantScript;
-    public int maximum;
-    public int growth;
+    public float maximum;
+    public float growth;
     public Image mask;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
