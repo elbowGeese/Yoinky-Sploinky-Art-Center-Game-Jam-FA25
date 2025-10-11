@@ -3,12 +3,12 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class WordSpawner : MonoBehaviour
+public class A_WordSpawner : MonoBehaviour
     
 {
     public TextMeshProUGUI text;
 
-    public RandomWordGenerator randomWordGeneratorReference;
+    public A_RandomWordGenerator randomWordGeneratorReference;
 
     void Start()
     {

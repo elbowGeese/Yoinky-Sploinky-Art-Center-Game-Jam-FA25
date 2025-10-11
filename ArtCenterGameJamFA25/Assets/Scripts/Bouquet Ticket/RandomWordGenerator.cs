@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RandomWordGenerator : MonoBehaviour
+public class A_RandomWordGenerator : MonoBehaviour
 {
     private static string[] wordList = { "Daisy", "Tulip", "Rose", "Baby's Breath", "Lily" };
 

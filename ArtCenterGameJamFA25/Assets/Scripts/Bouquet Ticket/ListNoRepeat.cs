@@ -5,7 +5,7 @@ public class ListNoRepeat : MonoBehaviour
     //all text objects are referecning from the same RandomWordGenerator script, and this causes them to repeat sometimes
     //do not allow duplicate words to display
 {
-    public RandomWordGenerator randomWordGeneratorReference;
+    public A_RandomWordGenerator randomWordGeneratorReference;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
