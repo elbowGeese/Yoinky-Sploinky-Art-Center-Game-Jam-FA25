@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class RandomNumberGenerator : MonoBehaviour
 {
-    public string GetRandomNumber()
+    public int GetRandomNumber()
     {
         int randomIndex = Random.Range(1, 3);
-        string randomNumber = randomIndex.ToString();
+        //string randomNumber = randomIndex.ToString();
 
-        return randomNumber;
+        return randomIndex;
     }
 
 }

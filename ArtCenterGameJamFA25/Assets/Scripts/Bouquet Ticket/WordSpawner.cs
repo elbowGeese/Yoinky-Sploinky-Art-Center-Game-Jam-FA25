@@ -6,14 +6,19 @@ using TMPro;
 public class A_WordSpawner : MonoBehaviour
     
 {
+    //store the string not temp
+    public string flowerName;
+
     public TextMeshProUGUI text;
 
     public A_RandomWordGenerator randomWordGeneratorReference;
 
     void Start()
     {
-        string word = GetRandomWord();
-        text.text = word;
+        //string word = GetRandomWord();
+        flowerName = GetRandomWord() ;
+
+        text.text = flowerName;
     }
 
     public string GetRandomWord()
