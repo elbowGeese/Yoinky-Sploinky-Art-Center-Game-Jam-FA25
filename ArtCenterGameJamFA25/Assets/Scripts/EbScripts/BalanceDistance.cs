@@ -3,6 +3,7 @@ using UnityEngine;
 public class BalanceDistance : MonoBehaviour
 {
     public RectTransform sun, moon;
+    public UIHoverDetection sunHover, moonHover;
     public float distanceMult = 1f;
     private float idealDistance = 450f;
 
@@ -28,31 +29,47 @@ public class BalanceDistance : MonoBehaviour
         switch (state)
         {
             case MovingState.NONE:
+                Debug.Log("NONE");
+
+                if (mousePos.isMouseDown) // && mouse inventory is empty
+                {
+                    if (sunHover.isMouseOver)
+                    {
+                        state = MovingState.SUN;
+                    }
+
+                    if (moonHover.isMouseOver)
+                    {
+                        state = MovingState.MOON;
+                    }
+                }
+
                 break;
             case MovingState.SUN:
+                Debug.Log("SUN");
+
                 LerpFromMouse(sun, moon);
+                CheckRelease();
+
                 break;
             case MovingState.MOON:
+                Debug.Log("MOON");
+
                 LerpFromMouse(moon, sun);
+                CheckRelease();
+
                 break;
             default:
+                Debug.Log("Invalid state change.");
                 break;
         }
     }
 
-    public void GrabMoon()
+    private void CheckRelease()
     {
-        if(state == MovingState.NONE)
+        if (!mousePos.isMouseDown)
         {
-            state = MovingState.MOON;
-        }
-    }
-
-    public void GrabSun()
-    {
-        if (state == MovingState.NONE)
-        {
-            state = MovingState.SUN;
+            state = MovingState.NONE;
         }
     }
 
