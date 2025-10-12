@@ -2,19 +2,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SeedSlotSpawner_UI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class SeedSlotSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Prefab & Layers")]
-    public SeedInstance_UI seedPrefab;  
-    public RectTransform dragLayer;    
+    public SeedInstance seedPrefab;  
+    public RectTransform dragLayer;  
 
     [Header("Visual")]
-    public Color seedColor = Color.white;  
+    public Color seedColor = Color.white;   
+    public Sprite flowerSprite;           
     public bool spawnFromSlotCenter = true;
 
     Canvas canvas;
     RectTransform slotRect;
-    SeedInstance_UI currentSeed;
+    SeedInstance currentSeed;
 
     void Awake()
     {
@@ -26,19 +27,20 @@ public class SeedSlotSpawner_UI : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         if (currentSeed != null || seedPrefab == null || dragLayer == null) return;
 
-        
+     
         currentSeed = Instantiate(seedPrefab, dragLayer);
-        currentSeed.image.color = seedColor;
+        if (currentSeed.image) currentSeed.image.color = seedColor;
 
       
         currentSeed.Init(slotRect, dragLayer, canvas);
 
-        
+      
+        currentSeed.flowerSprite = flowerSprite;
+
         if (spawnFromSlotCenter)
             currentSeed.GetComponent<RectTransform>().anchoredPosition =
                 WorldToAnchored(dragLayer, slotRect.position, canvas);
 
-       
         currentSeed.HandleBeginDrag(eventData, dragLayer);
     }
 
@@ -46,11 +48,11 @@ public class SeedSlotSpawner_UI : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         if (currentSeed == null) return;
 
-        
+     
         PitSlot nearest = null;
         float best = float.MaxValue;
 
-        var pits = GameObject.FindObjectsOfType<PitSlot>();
+        var pits = Object.FindObjectsByType<PitSlot>(FindObjectsSortMode.None);
         foreach (var pit in pits)
         {
             Vector2 pitScreen = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, pit.rectTransform.position);
@@ -59,8 +61,6 @@ public class SeedSlotSpawner_UI : MonoBehaviour, IBeginDragHandler, IDragHandler
         }
 
         currentSeed.currentHoverPit = nearest;
-
-       
         currentSeed.HandleDrag(eventData);
     }
 
@@ -71,7 +71,7 @@ public class SeedSlotSpawner_UI : MonoBehaviour, IBeginDragHandler, IDragHandler
         currentSeed = null;
     }
 
-   
+  
     Vector2 WorldToAnchored(RectTransform parent, Vector3 worldPos, Canvas canvas)
     {
         Vector2 screen = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, worldPos);

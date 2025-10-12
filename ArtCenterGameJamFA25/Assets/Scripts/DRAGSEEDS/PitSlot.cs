@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PitSlot : MonoBehaviour
+public class PitSlot: MonoBehaviour
 {
     public bool occupied { get; private set; }
     [HideInInspector] public RectTransform rectTransform;
@@ -11,7 +11,7 @@ public class PitSlot : MonoBehaviour
 
     private Color baseColor;
     private Image img;
-    private SeedInstance_UI currentSeed;
+    private SeedInstance currentSeed;
 
     void Awake()
     {
@@ -20,8 +20,7 @@ public class PitSlot : MonoBehaviour
         baseColor = img ? img.color : Color.white;
     }
 
-   
-    public bool TryPlace(SeedInstance_UI seed)
+    public bool TryPlace(SeedInstance seed)
     {
         if (occupied) return false;
         occupied = true;
@@ -29,9 +28,9 @@ public class PitSlot : MonoBehaviour
 
         seed.transform.SetParent(transform, worldPositionStays: false);
         seed.rectTransform.anchoredPosition = Vector2.zero;
-        if (img) img.color = highlightColor;
-        if (seed.image) seed.image.raycastTarget = false; // 落位后不再被拖
 
+        if (img) img.color = highlightColor;
+        if (seed.image) seed.image.raycastTarget = false;
         return true;
     }
 

@@ -66,9 +66,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 65771e3ce8f54c649a64c1e79dbf068e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -92,6 +92,8 @@ MonoBehaviour:
   magnetStrength: 0.35
   snapTime: 0.12
   returnTime: 0.18
+  flowerSprite: {fileID: 21300000, guid: 31abffa5d8fd1f04aa1c886865db9be5, type: 3}
+  flowerScaleMultiplier: 0.7
   rectTransform: {fileID: 0}
   image: {fileID: 0}
   parentCanvas: {fileID: 0}
