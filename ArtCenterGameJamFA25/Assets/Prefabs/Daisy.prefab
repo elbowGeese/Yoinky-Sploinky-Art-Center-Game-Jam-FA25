@@ -668,12 +668,12 @@ MonoBehaviour:
   plantName: Daisy
   SunlightScript: {fileID: 0}
   plantGrowth: 0
-  wantsMaxSun: 0
+  wantsMaxSun: 1
   wantsSun: 0
   wantsMinSun: 0
-  wantsNoSun: 1
-  minMoist: 0
-  maxMoist: 100
+  wantsNoSun: 0
+  minMoist: -50
+  maxMoist: 80
   moisture: 50
   isGrown: 0
   plantGrowthMax: 50
