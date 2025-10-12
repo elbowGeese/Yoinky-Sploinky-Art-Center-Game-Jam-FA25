@@ -13,63 +13,87 @@ public class PlantScript : MonoBehaviour
     public float maxMoist;
     public float moisture;
     public bool isGrown;
-    public bool isBurnt;
-    public bool isDrowned;
+    
     public float plantGrowthMax;
-    
-    
 
-   
+    public Animator _animator;
+    // animation bools
+    //public bool isBurnt;
+    //public bool isDrowned;
+    //public bool growth2;
+    //public bool growth3;
+    //public bool growth4;
+    //public bool isDead;
+
+
+
     void Start()
     {
-
+        isGrown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float timePassed = Time.deltaTime;
         
-        
-        
+            float timePassed = Time.deltaTime;
+
+
+
             mGrowth(timePassed);
             Grow(timePassed);
             DecayFunction(timePassed);
             MaxDecayFunction(timePassed);
-            
         
+        
+
+        //anim bools
+        if (plantGrowth >= 0.30*plantGrowthMax)
+        {
+            _animator.SetBool("Growth2", true);
+        }
+        if (plantGrowth >= 0.60 * plantGrowthMax)
+        {
+            _animator.SetBool("Growth3", true);
+        }
+        if (plantGrowth >= plantGrowthMax)
+        {
+            _animator.SetBool("Growth4", true);
+        }
+
+
+
+        //if (moisture >= 0.90*maxMoist)
+        //{
+        //    _animator.SetBool("isDrowned", true);
+
+        //}
+
+        //if (moisture >= 0.10*maxMoist)
+        //{
+        //    _animator.SetBool("isBurnt", true);
+        //}
 
         if (moisture >= maxMoist)
         {
-            isDrowned = true;
+            _animator.SetBool("isWaterDead", true);
 
         }
 
         if (moisture <= minMoist)
         {
-            isBurnt = true;
+            _animator.SetBool("isBurntDead", true);
         }
+
+
         if (plantGrowth >= plantGrowthMax)
         {
             isGrown = true;
         }
-        
-        //switch (currentState)
-        //{
-        //    case ObjectState.MaxGrowth:
-        //        mGrowth();
-        //        break;
-        //    case ObjectState.Growth:
-        //        Grow();
-        //        break;
-        //    case ObjectState.Decay:
-        //        DecayFunction();
-        //        break;
-        //    case ObjectState.MaxDecay:
-        //        MaxDecayFunction();
-        //        break;
 
-        //}
+        // end of anim bools
+        
+       
     }
 
     void mGrowth(float timePassed)
@@ -81,7 +105,7 @@ public class PlantScript : MonoBehaviour
             if (SunlightScript.maxsun == true)
             {
 
-                plantGrowth += 2 * timePassed;
+                plantGrowth += 5 * timePassed;
                 moisture -= 1 * timePassed;
 
             }
@@ -90,7 +114,7 @@ public class PlantScript : MonoBehaviour
             {
                 if (SunlightScript.normalsun == true)
                 {
-                    plantGrowth += 2 * timePassed;
+                    plantGrowth += 5 * timePassed;
                     moisture -= 1 * timePassed;
                 }
 
@@ -99,7 +123,7 @@ public class PlantScript : MonoBehaviour
             {
                 if (SunlightScript.minsun == true)
                 {
-                    plantGrowth += 2 * timePassed;
+                    plantGrowth += 5 * timePassed;
                 moisture += 1 * timePassed;
             }
 
@@ -108,7 +132,7 @@ public class PlantScript : MonoBehaviour
             {
                 if (SunlightScript.nosun == true)
                 {
-                    plantGrowth += 2 * timePassed;
+                    plantGrowth += 5 * timePassed;
                 moisture += 1 * timePassed;
             }
 
@@ -122,7 +146,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.normalsun == true)
             {
-                plantGrowth += 1 * timePassed;
+                plantGrowth += 2 * timePassed;
                 moisture -= 1 * timePassed;
             }
 
@@ -131,7 +155,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.minsun == true)
             {
-                plantGrowth += 1 * timePassed;
+                plantGrowth += 2 * timePassed;
                 moisture += 1 * timePassed;
             }
 
@@ -140,7 +164,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.nosun == true)
             {
-                plantGrowth +=1 * timePassed ;
+                plantGrowth +=2 * timePassed ;
                 moisture += 1 * timePassed;
             }
 
@@ -150,7 +174,7 @@ public class PlantScript : MonoBehaviour
         {
             if (SunlightScript.minsun == true)
             {
-                plantGrowth += 1 * timePassed;
+                plantGrowth += 2 * timePassed;
                 moisture += 1 * timePassed;
             }
         }

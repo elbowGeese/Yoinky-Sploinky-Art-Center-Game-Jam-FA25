@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode()]
+//[ExecuteInEditMode()]
 public class GrowthBar : MonoBehaviour
 {
     public PlantScript plantScript;
