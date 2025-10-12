@@ -31,7 +31,7 @@ public class TimerScript : MonoBehaviour
         else if (remainingTime < 0)
         {
             remainingTime = 0;
-            timesUp.SetActive(true);
+            //timesUp.SetActive(true);
             
             StartCoroutine(EndSequence());
         }
