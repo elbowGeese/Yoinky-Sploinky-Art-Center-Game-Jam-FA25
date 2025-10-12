@@ -30,7 +30,8 @@ public class WalkThroughText : MonoBehaviour
 
             // set progress of dialog by character
             bool done = false;
-            while (!done)
+            bool interrupted = false;
+            while (!done && !interrupted)
             {
                 char c = next[0];
                 next = next.Substring(1);
@@ -43,21 +44,11 @@ public class WalkThroughText : MonoBehaviour
                     done = true;
                 }
 
-                float timer = 0f;
-                while(timer < speed)
-                {
-                    timer += Time.deltaTime;
-                    if (!Mouse.current.leftButton.wasPressedThisFrame)
-                    {
-                        timer = speed;
-                    }
-
-                    yield return null;
-                }
+                yield return new WaitForSeconds(speed * Time.deltaTime);
             }
 
             // set progress of dialog by block
-            Debug.Log("Made it out");
+            Debug.Log("Showing full display");
             string fullDisplay = "";
             for(int j = 0; j <= i; j++)
             {
@@ -67,6 +58,7 @@ public class WalkThroughText : MonoBehaviour
             textDisplay.text = fullDisplay;
 
             // wait for input
+            Debug.Log("Waiting for input.");
             waitingIndicator.SetActive(true);
             while (!Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -76,6 +68,7 @@ public class WalkThroughText : MonoBehaviour
         }
 
         // display entire dialog together
+        Debug.Log("Showing complete display");
         string completeDisplayText = "";
         for (int j = 0; j < dialogs.Length; j++)
         {
@@ -83,6 +76,7 @@ public class WalkThroughText : MonoBehaviour
             completeDisplayText += dialogs[j];
         }
 
+        Debug.Log("Waiting for final input");
         // wait for input
         waitingIndicator.SetActive(true);
         while (!Mouse.current.leftButton.wasPressedThisFrame)
