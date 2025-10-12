@@ -66,26 +66,26 @@ private void TicketIsComplete ()
 
 private int GetPointValue (string plantName)
     {
-        if (plantName == "Rose")
-        {
-            return PointDataManager.rosePoints;
-        }
-        if (plantName == "Tulip")
-        {
-            return PointDataManager.tulipPoints;
-        }
-        if (plantName == "Baby's Breath")
-        {
-            return PointDataManager.babyPoints;
-        }
         if (plantName == "Daisy")
         {
             return PointDataManager.daisyPoints;
         }
-        if (plantName == "Lily")
+        if (plantName == "Peony")
         {
-            return PointDataManager.lilyPoints;
+            return PointDataManager.peonyPoints;
         }
+        if (plantName == "Jasmine")
+        {
+            return PointDataManager.jasminePoints;
+        }
+        //if (plantName == "Daisy")
+        //{
+        //    return PointDataManager.daisyPoints;
+        //}
+        //if (plantName == "Lily")
+        //{
+        //    return PointDataManager.lilyPoints;
+        //}
         return (0);
     }
 
