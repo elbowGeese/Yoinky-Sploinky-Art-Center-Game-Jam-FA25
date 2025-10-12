@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrowthBar
   plantScript: {fileID: 1200781531616451438}
-  maximum: 100
+  maximum: 50
   growth: 10
   mask: {fileID: 152947900940736865}
 --- !u!1 &1762002049437900357
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.1
+  m_FillAmount: 0.2
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 6944740477714529949}
   - component: {fileID: 5172077519780374406}
   - component: {fileID: 1200781531616451438}
+  - component: {fileID: -3621780784096064868}
   m_Layer: 5
   m_Name: Plant
   m_TagString: Untagged
@@ -529,19 +530,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantScript
   SunlightScript: {fileID: 0}
-  plantGrowth: 10
+  plantGrowth: 0
   wantsMaxSun: 0
   wantsSun: 0
   wantsMinSun: 0
   wantsNoSun: 1
-  time: 0
   minMoist: 0
-  maxMoist: 30
-  moisture: 15
+  maxMoist: 100
+  moisture: 50
   isGrown: 0
-  isBurnt: 0
-  isDrowned: 0
-  plantGrowthMax: 100
+  plantGrowthMax: 50
+  _animator: {fileID: -3621780784096064868}
+--- !u!95 &-3621780784096064868
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5755432089760502376}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ed24e306a7aed1b458be3bea46092de7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6334495589595287648
 GameObject:
   m_ObjectHideFlags: 0
