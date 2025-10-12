@@ -7,6 +7,9 @@ public class Score : MonoBehaviour
 
     private ScoreDisplay scoreDisplay;
 
+    public AudioSource success;
+
+
     void Start()
     {
         currentScore = 0;
@@ -20,6 +23,8 @@ public class Score : MonoBehaviour
         currentScore += amount;
 
         scoreDisplay.DisplayScore(currentScore);
+
+        success.Play();
     }
 
     public void SaveScore()
