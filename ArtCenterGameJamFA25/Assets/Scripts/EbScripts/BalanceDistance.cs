@@ -41,7 +41,7 @@ public class BalanceDistance : MonoBehaviour
             case MovingState.NONE:
                 Debug.Log("NONE");
 
-                if (mousePos.isMouseDown) // && mouse inventory is empty
+                if (mousePos.onMouseDown) // && mouse inventory is empty
                 {
                     if (sunHover.isMouseOver)
                     {
