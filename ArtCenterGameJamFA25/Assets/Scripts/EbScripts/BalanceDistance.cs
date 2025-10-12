@@ -21,6 +21,8 @@ public class BalanceDistance : MonoBehaviour
 
     private float maxHeight, minHeight;
 
+   
+
     private void Start()
     {
         thisTransform = GetComponent<RectTransform>();
@@ -113,18 +115,26 @@ public class BalanceDistance : MonoBehaviour
         if(sunPower > maxSminMS) // sun power is greater than the min maxsun requirement / max sun requirement
         {
             sunlightStates.State = SunlightStates.ObjectState.MaxSunlight;
+
+            
         }
         else if(sunPower > maxHSminS) // sun power is less than above and greater than the min sun requirement / max halfsun requirement
         {
             sunlightStates.State = SunlightStates.ObjectState.Sunlight;
+
+            
         }
         else if (sunPower > maxNminHS) // sun power is less than above and greater than the min halfsun requirement / max night requirement
         {
             sunlightStates.State = SunlightStates.ObjectState.HalfSun;
+
+            
         }
         else // sun power is less than above
         {
             sunlightStates.State = SunlightStates.ObjectState.Nighttime;
+
+            
         }
     }
 }
