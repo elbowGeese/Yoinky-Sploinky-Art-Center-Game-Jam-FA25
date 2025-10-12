@@ -97,3 +97,9 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 */[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+
+# Unity 用户设置（每个人本地不同）
+ProjectSettings/EditorUserSettings.asset
+UserSettings/
+*.dwlt
