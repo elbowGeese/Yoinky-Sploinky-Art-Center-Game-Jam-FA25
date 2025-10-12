@@ -6,26 +6,26 @@ using UnityEngine.UI;
 public class SeedInstance : MonoBehaviour
 {
     [Header("Snap / Magnet")]
-    public float snapRadiusScreenPx;   
-    public float magnetStrength; 
-    public float snapTime;  
-    public float returnTime; 
+    public float snapRadiusScreenPx; 
+    public float magnetStrength;  
+    public float snapTime = 0.12f;  
+    public float returnTime = 0.18f;  
 
     [Header("Flower")]
-    public Sprite flowerSprite;               
+    public Sprite flowerSprite;              
     [Range(0.1f, 3f)]
-    public float flowerScaleMultiplier; 
+    public float flowerScaleMultiplier = 1.2f;
 
     [HideInInspector] public RectTransform rectTransform;
     [HideInInspector] public Image image;
     [HideInInspector] public Canvas parentCanvas;
 
-  
-    RectTransform dragLayer;     
-    RectTransform slotRect;        
-    Vector2 slotAnchoredInDrag; 
 
-    
+    RectTransform dragLayer;           
+    RectTransform slotRect;          
+    Vector2 slotAnchoredInDrag;   
+
+   
     [HideInInspector] public PitSlot currentHoverPit;
 
     void Awake()
@@ -35,7 +35,7 @@ public class SeedInstance : MonoBehaviour
         parentCanvas = GetComponentInParent<Canvas>();
     }
 
-   
+    
     public void Init(RectTransform fromSlot, RectTransform dragLayer, Canvas canvas)
     {
         this.slotRect = fromSlot;
@@ -46,7 +46,7 @@ public class SeedInstance : MonoBehaviour
         slotAnchoredInDrag = WorldToAnchored(dragLayer, slotRect.position);
     }
 
-   
+ 
     public void HandleBeginDrag(PointerEventData eventData, RectTransform dragLayer)
     {
         transform.SetParent(dragLayer, worldPositionStays: false);
@@ -67,7 +67,7 @@ public class SeedInstance : MonoBehaviour
             if (dist <= snapRadiusScreenPx && !currentHoverPit.occupied)
             {
                 Vector2 pitAnchored = ScreenToAnchored(dragLayer, pitScreen);
-                float t = Mathf.Clamp01(1f - dist / snapRadiusScreenPx);
+                float t = Mathf.Clamp01(1f - dist / snapRadiusScreenPx); 
                 float strength = magnetStrength * t;
                 target = Vector2.Lerp(mouseAnchored, pitAnchored, strength);
             }
@@ -76,7 +76,7 @@ public class SeedInstance : MonoBehaviour
         rectTransform.anchoredPosition = target;
     }
 
-   
+
     public void HandleEndDrag(PointerEventData eventData)
     {
         PitSlot targetPit = null;
@@ -93,13 +93,13 @@ public class SeedInstance : MonoBehaviour
             Vector2 pitAnchored = WorldToAnchored(dragLayer, targetPit.rectTransform.position);
             StartCoroutine(TweenAnchored(rectTransform.anchoredPosition, pitAnchored, snapTime, () =>
             {
-                targetPit.TryPlace(this);   
+                targetPit.TryPlace(this);  
                 MorphToFlower(true);        
             }));
         }
         else
         {
-           
+          
             StartCoroutine(TweenAnchored(rectTransform.anchoredPosition, slotAnchoredInDrag, returnTime, () =>
             {
                 Destroy(gameObject);
@@ -114,62 +114,43 @@ public class SeedInstance : MonoBehaviour
     {
         if (image == null) return;
 
-     
+       
         Vector2 baseSize = rectTransform.sizeDelta;
 
-       
         if (flowerSprite != null)
         {
             image.sprite = flowerSprite;
         }
 
-    
-        image.preserveAspect = true;
-
-        
-        if (image.sprite != null)
-        {
-            Vector2 sprPx = image.sprite.rect.size;             
-            float aspect = sprPx.x / Mathf.Max(1f, sprPx.y);   
-            float targetH = baseSize.y;                         
-            float targetW = targetH * aspect;                   
-            rectTransform.sizeDelta = new Vector2(targetW, targetH);
-        }
-        else
-        {
-            rectTransform.sizeDelta = baseSize;
-        }
-
       
-        float m = Mathf.Max(0.01f, flowerScaleMultiplier);
-        rectTransform.localScale = new Vector3(m, m, 1f);
-
-   
-        image.raycastTarget = false;
+        rectTransform.sizeDelta = baseSize * Mathf.Max(0.01f, flowerScaleMultiplier);
 
        
+        image.raycastTarget = false;
+
+      
         if (playBloom)
-        {
-            StartCoroutine(Bloom(0.1f, 0.85f * m, 1f * m));
-        }
+            StartCoroutine(Bloom(0.1f, 0.85f, 1f));
     }
 
-
+   
     IEnumerator Bloom(float duration, float fromScale, float toScale)
     {
         float t = 0f;
+        Vector3 from = Vector3.one * fromScale;
+        Vector3 to = Vector3.one * toScale;
+
         while (t < 1f)
         {
             t += Time.unscaledDeltaTime / Mathf.Max(0.0001f, duration);
-            float ease = 1f - Mathf.Cos(t * Mathf.PI * 0.5f); 
-            float s = Mathf.LerpUnclamped(fromScale, toScale, ease);
-            rectTransform.localScale = new Vector3(s, s, 1f);
+            float ease = 1f - Mathf.Cos(t * Mathf.PI * 0.5f);
+            rectTransform.localScale = Vector3.LerpUnclamped(from, to, ease);
             yield return null;
         }
-        rectTransform.localScale = new Vector3(toScale, toScale, 1f);
+        rectTransform.localScale = Vector3.one;
     }
 
- 
+  
     private void UpdatePosition(Vector2 screenPos)
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(

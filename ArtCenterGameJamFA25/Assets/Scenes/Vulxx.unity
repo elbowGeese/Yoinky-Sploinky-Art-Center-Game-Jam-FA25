@@ -307,10 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58200d7fd4bb7b4faa9e28aafa1117c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PitSlot
-  anchor: {fileID: 908789243}
-  localOffset: {x: 0, y: 0, z: 0}
-  canColor: {r: 0.7, g: 1, b: 0.7, a: 1}
-  cannotColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  rectTransform: {fileID: 0}
+  highlightColor: {r: 0.8, g: 1, b: 0.8, a: 1}
 --- !u!61 &314987106
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -467,7 +465,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedSlotSpawner
   seedPrefab: {fileID: 7577503627723694455, guid: 765cd4f84c5de38488118c0fa7543951, type: 3}
-  spawnPoint: {fileID: 434054603}
+  dragLayer: {fileID: 0}
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  flowerSprite: {fileID: 0}
+  spawnFromSlotCenter: 1
 --- !u!61 &434054605
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -734,6 +735,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!50 &608375655
 Rigidbody2D:
   serializedVersion: 5
@@ -951,10 +962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58200d7fd4bb7b4faa9e28aafa1117c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PitSlot
-  anchor: {fileID: 1535098613}
-  localOffset: {x: 0, y: 0, z: 0}
-  canColor: {r: 0.7, g: 1, b: 0.7, a: 1}
-  cannotColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  rectTransform: {fileID: 0}
+  highlightColor: {r: 0.8, g: 1, b: 0.8, a: 1}
 --- !u!61 &618411044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1110,6 +1119,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!50 &622676589
 Rigidbody2D:
   serializedVersion: 5
@@ -1330,6 +1349,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!50 &681626234
 Rigidbody2D:
   serializedVersion: 5
@@ -1513,7 +1542,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedSlotSpawner
   seedPrefab: {fileID: 7577503627723694455, guid: 8eefada05c058b84880b0c9e7ad17423, type: 3}
-  spawnPoint: {fileID: 727569570}
+  dragLayer: {fileID: 0}
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  flowerSprite: {fileID: 0}
+  spawnFromSlotCenter: 1
 --- !u!61 &727569572
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1650,6 +1682,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!50 &741134423
 Rigidbody2D:
   serializedVersion: 5
@@ -2083,6 +2125,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!50 &968436596
 Rigidbody2D:
   serializedVersion: 5
@@ -2340,10 +2392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58200d7fd4bb7b4faa9e28aafa1117c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PitSlot
-  anchor: {fileID: 532307577}
-  localOffset: {x: 0, y: 0, z: 0}
-  canColor: {r: 0.7, g: 1, b: 0.7, a: 1}
-  cannotColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  rectTransform: {fileID: 0}
+  highlightColor: {r: 0.8, g: 1, b: 0.8, a: 1}
 --- !u!61 &1070510973
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2499,10 +2549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58200d7fd4bb7b4faa9e28aafa1117c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PitSlot
-  anchor: {fileID: 2126411870}
-  localOffset: {x: 0, y: 0, z: 0}
-  canColor: {r: 0.7, g: 1, b: 0.7, a: 1}
-  cannotColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  rectTransform: {fileID: 0}
+  highlightColor: {r: 0.8, g: 1, b: 0.8, a: 1}
 --- !u!61 &1081599338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2783,12 +2831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78bf7c998c958a40a194d66d3b2b340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragManager
-  pitLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  pitSnapRadius: 0.3
-  magnetStrength: 0.35
-  placeSnapTime: 0.12
 --- !u!4 &1386481340
 Transform:
   m_ObjectHideFlags: 0
@@ -2855,10 +2897,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58200d7fd4bb7b4faa9e28aafa1117c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PitSlot
-  anchor: {fileID: 946159617}
-  localOffset: {x: 0, y: 0, z: 0}
-  canColor: {r: 0.7, g: 1, b: 0.7, a: 1}
-  cannotColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  rectTransform: {fileID: 0}
+  highlightColor: {r: 0.8, g: 1, b: 0.8, a: 1}
 --- !u!61 &1443780859
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3014,6 +3054,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!50 &1479712436
 Rigidbody2D:
   serializedVersion: 5
@@ -3250,6 +3300,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!50 &1558927747
 Rigidbody2D:
   serializedVersion: 5
@@ -3451,10 +3511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58200d7fd4bb7b4faa9e28aafa1117c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PitSlot
-  anchor: {fileID: 1632843567}
-  localOffset: {x: 0, y: 0, z: 0}
-  canColor: {r: 0.7, g: 1, b: 0.7, a: 1}
-  cannotColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  rectTransform: {fileID: 0}
+  highlightColor: {r: 0.8, g: 1, b: 0.8, a: 1}
 --- !u!61 &1565948545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3750,7 +3808,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedSlotSpawner
   seedPrefab: {fileID: 7577503627723694455, guid: 14846a915138c264481e1be7c96a857e, type: 3}
-  spawnPoint: {fileID: 1688805976}
+  dragLayer: {fileID: 0}
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  flowerSprite: {fileID: 0}
+  spawnFromSlotCenter: 1
 --- !u!1 &1730253539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3802,6 +3863,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!50 &1730253542
 Rigidbody2D:
   serializedVersion: 5
@@ -3984,10 +4055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58200d7fd4bb7b4faa9e28aafa1117c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PitSlot
-  anchor: {fileID: 887670510}
-  localOffset: {x: 0, y: 0, z: 0}
-  canColor: {r: 0.7, g: 1, b: 0.7, a: 1}
-  cannotColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  rectTransform: {fileID: 0}
+  highlightColor: {r: 0.8, g: 1, b: 0.8, a: 1}
 --- !u!61 &1909494128
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4326,10 +4395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58200d7fd4bb7b4faa9e28aafa1117c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PitSlot
-  anchor: {fileID: 611197052}
-  localOffset: {x: 0, y: 0, z: 0}
-  canColor: {r: 0.7, g: 1, b: 0.7, a: 1}
-  cannotColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  rectTransform: {fileID: 0}
+  highlightColor: {r: 0.8, g: 1, b: 0.8, a: 1}
 --- !u!1 &2126411869
 GameObject:
   m_ObjectHideFlags: 0
@@ -4397,6 +4464,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  snapRadiusScreenPx: 0
+  magnetStrength: 0
+  snapTime: 0
+  returnTime: 0
+  flowerSprite: {fileID: 0}
+  flowerScaleMultiplier: 0
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
 --- !u!224 &1590583541292891537
 RectTransform:
   m_ObjectHideFlags: 0

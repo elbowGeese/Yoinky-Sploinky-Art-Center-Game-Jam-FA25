@@ -1,21 +1,20 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class SeedSlotSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Prefab & Layers")]
     public SeedInstance seedPrefab;  
-    public RectTransform dragLayer;  
+    public RectTransform dragLayer;   
 
     [Header("Visual")]
     public Color seedColor = Color.white;   
-    public Sprite flowerSprite;           
+    public Sprite flowerSprite;              
     public bool spawnFromSlotCenter = true;
 
-    Canvas canvas;
-    RectTransform slotRect;
-    SeedInstance currentSeed;
+    private Canvas canvas;
+    private RectTransform slotRect;
+    private SeedInstance currentSeed;
 
     void Awake()
     {
@@ -27,16 +26,16 @@ public class SeedSlotSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (currentSeed != null || seedPrefab == null || dragLayer == null) return;
 
-     
+        
         currentSeed = Instantiate(seedPrefab, dragLayer);
         if (currentSeed.image) currentSeed.image.color = seedColor;
 
-      
+       
         currentSeed.Init(slotRect, dragLayer, canvas);
-
-      
+        
         currentSeed.flowerSprite = flowerSprite;
 
+        
         if (spawnFromSlotCenter)
             currentSeed.GetComponent<RectTransform>().anchoredPosition =
                 WorldToAnchored(dragLayer, slotRect.position, canvas);
@@ -48,10 +47,11 @@ public class SeedSlotSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (currentSeed == null) return;
 
-     
+       
         PitSlot nearest = null;
         float best = float.MaxValue;
 
+       
         var pits = Object.FindObjectsByType<PitSlot>(FindObjectsSortMode.None);
         foreach (var pit in pits)
         {
@@ -71,7 +71,7 @@ public class SeedSlotSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         currentSeed = null;
     }
 
-  
+   
     Vector2 WorldToAnchored(RectTransform parent, Vector3 worldPos, Canvas canvas)
     {
         Vector2 screen = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, worldPos);
