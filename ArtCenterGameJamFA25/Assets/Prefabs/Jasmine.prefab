@@ -583,9 +583,9 @@ GameObject:
   - component: {fileID: 6944740477714529949}
   - component: {fileID: 5172077519780374406}
   - component: {fileID: 1200781531616451438}
-  - component: {fileID: -3621780784096064868}
   - component: {fileID: 4174442262102533981}
   - component: {fileID: 8549147735833063588}
+  - component: {fileID: 1470752709773952711}
   m_Layer: 5
   m_Name: Jasmine
   m_TagString: Untagged
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1096227259, guid: 603cf597336ea1a4c9ecf8ff5def89df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -669,38 +669,16 @@ MonoBehaviour:
   SunlightScript: {fileID: 0}
   plantGrowth: 0
   wantsMaxSun: 0
-  wantsSun: 0
+  wantsSun: 1
   wantsMinSun: 0
-  wantsNoSun: 1
-  minMoist: 0
-  maxMoist: 100
-  moisture: 50
+  wantsNoSun: 0
+  minMoist: 20
+  maxMoist: 150
+  moisture: 60
   isGrown: 0
   plantGrowthMax: 50
-  _animator: {fileID: -3621780784096064868}
+  _animator: {fileID: 1470752709773952711}
   isPaused: 0
---- !u!95 &-3621780784096064868
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5755432089760502376}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ed24e306a7aed1b458be3bea46092de7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4174442262102533981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,6 +707,28 @@ MonoBehaviour:
   state: 0
   draggingSpeed: 22
   returningSpeed: 15
+--- !u!95 &1470752709773952711
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5755432089760502376}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d6f7d4f309ef9045b4c80a7fa76b061, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6334495589595287648
 GameObject:
   m_ObjectHideFlags: 0
