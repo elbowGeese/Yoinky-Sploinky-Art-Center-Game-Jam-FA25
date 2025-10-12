@@ -451,8 +451,10 @@ GameObject:
   - component: {fileID: 5172077519780374406}
   - component: {fileID: 1200781531616451438}
   - component: {fileID: -3621780784096064868}
+  - component: {fileID: 4539340574304143301}
+  - component: {fileID: 4095267235458198742}
   m_Layer: 5
-  m_Name: Plant
+  m_Name: Peony
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,9 +468,9 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5755432089760502376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.32814026}
-  m_LocalScale: {x: 1.54, y: 1.54, z: 1.54}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8528265451626830832}
   - {fileID: 8290189779361542703}
@@ -476,7 +478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 364, y: -28.2}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6944740477714529949
@@ -529,6 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2dd2f7d87398b48b72cab0d2ecd8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantScript
+  plantName: Peony
   SunlightScript: {fileID: 0}
   plantGrowth: 0
   wantsMaxSun: 0
@@ -541,6 +544,7 @@ MonoBehaviour:
   isGrown: 0
   plantGrowthMax: 50
   _animator: {fileID: -3621780784096064868}
+  isPaused: 0
 --- !u!95 &-3621780784096064868
 Animator:
   serializedVersion: 7
@@ -563,6 +567,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4539340574304143301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5755432089760502376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea9a3c02c6d0c5479a37b94f45aa3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverDetection
+  isMouseOver: 0
+--- !u!114 &4095267235458198742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5755432089760502376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64614f94125335e41836494dd156a2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragPlant
+  state: 0
+  draggingSpeed: 22
+  returningSpeed: 15
 --- !u!1 &6334495589595287648
 GameObject:
   m_ObjectHideFlags: 0

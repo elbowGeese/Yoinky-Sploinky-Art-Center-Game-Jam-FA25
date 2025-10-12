@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class A_RandomWordGenerator : MonoBehaviour
 {
-    private static string[] wordList = { "Daisy", "Tulip", "Rose", "Baby's Breath", "Lily" };
+    private static string[] wordList = { "Daisy", "Peony", "Jasmine"};
 
     public string GetRandomWord()
     {

@@ -16,8 +16,11 @@ public class SeedInstance : MonoBehaviour
     [Range(0.1f, 3f)]
     public float flowerScaleMultiplier = 1.2f;
 
+    [Header("Flower Prefab")]
+    public GameObject flowerPrefab;
+
     [HideInInspector] public RectTransform rectTransform;
-    [HideInInspector] public Image image;
+    //[HideInInspector] public Image image;
     [HideInInspector] public Canvas parentCanvas;
 
 
@@ -31,7 +34,7 @@ public class SeedInstance : MonoBehaviour
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        image = GetComponent<Image>();
+        //image = GetComponent<Image>();
         parentCanvas = GetComponentInParent<Canvas>();
     }
 
@@ -94,7 +97,7 @@ public class SeedInstance : MonoBehaviour
             StartCoroutine(TweenAnchored(rectTransform.anchoredPosition, pitAnchored, snapTime, () =>
             {
                 targetPit.TryPlace(this);  
-                MorphToFlower(true);        
+                //MorphToFlower(true);        
             }));
         }
         else
@@ -110,28 +113,28 @@ public class SeedInstance : MonoBehaviour
     }
 
    
-    public void MorphToFlower(bool playBloom)
-    {
-        if (image == null) return;
+    //public void MorphToFlower(bool playBloom)
+    //{
+        //if (image == null) return;
 
        
-        Vector2 baseSize = rectTransform.sizeDelta;
+        //Vector2 baseSize = rectTransform.sizeDelta;
 
-        if (flowerSprite != null)
-        {
-            image.sprite = flowerSprite;
-        }
+        //if (flowerSprite != null)
+        //{
+            //image.sprite = flowerSprite;
+        //}
 
       
-        rectTransform.sizeDelta = baseSize * Mathf.Max(0.01f, flowerScaleMultiplier);
+       // rectTransform.sizeDelta = baseSize * Mathf.Max(0.01f, flowerScaleMultiplier);
 
        
-        image.raycastTarget = false;
+        //image.raycastTarget = false;
 
       
-        if (playBloom)
-            StartCoroutine(Bloom(0.1f, 0.85f, 1f));
-    }
+        //if (playBloom)
+            //StartCoroutine(Bloom(0.1f, 0.85f, 1f));
+    //}
 
    
     IEnumerator Bloom(float duration, float fromScale, float toScale)

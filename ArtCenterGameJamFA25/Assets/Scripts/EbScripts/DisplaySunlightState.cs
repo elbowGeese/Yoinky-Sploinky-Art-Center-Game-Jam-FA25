@@ -14,6 +14,8 @@ public class DisplaySunlightState : MonoBehaviour
 
     private SunlightStates.ObjectState previousState;
 
+    public AudioSource clicksfx;
+
     private void Start()
     {
         sunlightStates = FindFirstObjectByType<SunlightStates>();
@@ -30,6 +32,9 @@ public class DisplaySunlightState : MonoBehaviour
         {
             toFadeIn.color = Color.Lerp(invisibleColor, visibleColor, timer / timeToFade);
             toFadeOut.color = Color.Lerp(invisibleColor, visibleColor, 1 - (timer / timeToFade));
+
+           
+          
         }
         else
         {
@@ -69,6 +74,44 @@ public class DisplaySunlightState : MonoBehaviour
 
         toFadeIn = GetImageFromState(currentState);
         toFadeOut = GetImageFromState(previousState);
+
+        float targetpitch = 1f;
+
+        switch (sunlightStates.State)
+        {
+            case SunlightStates.ObjectState.MaxSunlight:
+
+                targetpitch = 1.6f; 
+                
+                break;
+
+            case SunlightStates.ObjectState.Sunlight:
+
+                targetpitch = 1.5f;
+
+                break;
+
+            case SunlightStates.ObjectState.HalfSun:
+
+                targetpitch = 1.4f;
+
+                break;
+
+            case SunlightStates.ObjectState.Nighttime:
+
+                targetpitch = 1.3f;
+
+                break;
+
+            default:
+
+                break;
+        }
+
+        clicksfx.pitch = targetpitch;
+
+        clicksfx.Play();
+
 
         timer = 0f;
 
