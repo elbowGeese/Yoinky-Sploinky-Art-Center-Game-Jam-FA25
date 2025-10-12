@@ -11,7 +11,7 @@ public class OverarchingTicket : MonoBehaviour
     //public int points = 0; 
     
 
-public void TryToSubmit (string flowerName)
+public bool TryToSubmit (string flowerName)
     {
         //foreach (A_WordSpawner wordSpawner in wordSpawnerRef)
         //{
@@ -23,7 +23,7 @@ public void TryToSubmit (string flowerName)
 
         for (int i = 0; i < wordSpawnerRef.Length; i ++  )
         {
-            if (flowerName == wordSpawnerRef [i] .flowerName )
+            if (flowerName == wordSpawnerRef[i].flowerName )
             {
                 if (numberHave[i] < numberSpawnerRef[i].amountNeeded)
                 {
@@ -32,10 +32,12 @@ public void TryToSubmit (string flowerName)
 
                     TicketIsComplete();
 
-                    return;
+                    return true;
                 }
             }    
         }
+
+        return false;
     }
 
 private void TicketIsComplete ()

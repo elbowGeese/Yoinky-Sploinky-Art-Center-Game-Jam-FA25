@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 7396758813971853353}
   m_Layer: 5
   m_Name: Bouquet Ticket
-  m_TagString: Untagged
+  m_TagString: Ticket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,12 +363,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OverarchingTicket
   wordSpawnerRef:
   - {fileID: 7169745586317090131}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8874941640543606148}
+  - {fileID: 7492613130149341405}
   numberSpawnerRef:
   - {fileID: 5016113540306892526}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 413031987238328369}
+  - {fileID: 8260148046399421908}
   numberHave: 000000000000000000000000
 --- !u!1 &3465543321502246085
 GameObject:
