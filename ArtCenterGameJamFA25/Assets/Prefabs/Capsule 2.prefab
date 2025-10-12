@@ -182,3 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908f6d8686105a4fa47481e8ec4d5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedInstance
+  rectTransform: {fileID: 0}
+  image: {fileID: 0}
+  parentCanvas: {fileID: 0}
+  currentHoverPit: {fileID: 0}
