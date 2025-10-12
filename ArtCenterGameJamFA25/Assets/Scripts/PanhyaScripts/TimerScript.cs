@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class TimerScript : MonoBehaviour
     public float remainingTime;
     public GameObject timesUp;
     public Score scoreScript;
+    public Animator cloudanimator;
     //public TextMeshProUGUI finalScore;
     //public TextMeshProUGUI bestScore;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,16 +26,27 @@ public class TimerScript : MonoBehaviour
         if (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
+
         }
         else if (remainingTime < 0)
         {
             remainingTime = 0;
             timesUp.SetActive(true);
+            
+            StartCoroutine(EndSequence());
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         
+    }
+    IEnumerator EndSequence()
+    {
+        cloudanimator.SetBool("timesup", true);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("End Scene");
+        yield return new WaitForSeconds(2);
+        cloudanimator.SetBool("scenechanged", true );
     }
 }
