@@ -19,13 +19,16 @@ public class PlantScript : MonoBehaviour
     public float plantGrowthMax;
 
     public Animator _animator;
+
+    public AudioSource heatdeath, flooddeath;
+
     // animation bools
     //public bool isBurnt;
     //public bool isDrowned;
     //public bool growth2;
     //public bool growth3;
     //public bool growth4;
-    //public bool isDead;
+    public bool isDead = false;
 
     public bool isPaused = false;
 
@@ -82,11 +85,23 @@ public class PlantScript : MonoBehaviour
         {
             _animator.SetBool("isWaterDead", true);
 
+            if (isDead == false)
+            {
+                flooddeath.Play();
+                isDead = true;
+            }
+
         }
 
         if (moisture <= minMoist)
         {
             _animator.SetBool("isBurntDead", true);
+
+            if (isDead == false)
+            {
+                heatdeath.Play();
+                isDead = true;
+            }
         }
 
 
