@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
@@ -7,8 +9,12 @@ public class TimerScript : MonoBehaviour
     public float remainingTime;
     public GameObject timesUp;
     public Score scoreScript;
-    public TextMeshProUGUI finalScore;
-    public TextMeshProUGUI bestScore;
+    public Animator cloudanimator;
+    public float sloanWait;
+    public AudioSource gong;
+
+    //public TextMeshProUGUI finalScore;
+    //public TextMeshProUGUI bestScore;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,23 +24,34 @@ public class TimerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        finalScore.text = "Final Score:" + scoreScript.CurrentScore.ToString("00000");
-        bestScore.text = "Best Score:" + PlayerPrefs.GetInt("Highscore");
+        //finalScore.text = "Final Score:" + scoreScript.CurrentScore.ToString("00000");
+        //bestScore.text = "Best Score:" + PlayerPrefs.GetInt("Highscore");
         if (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
+
         }
         else if (remainingTime < 0)
         {
             remainingTime = 0;
             timesUp.SetActive(true);
+            
+            gong.Play();
+
+            StartCoroutine(EndSequence());
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        if (remainingTime <= 0)
-        {
-        }
+        
+    }
+    IEnumerator EndSequence()
+    {
+        cloudanimator.SetBool("timesup", true);
+        yield return new WaitForSeconds(sloanWait);
+        SceneManager.LoadScene("End Scene");
+        yield return new WaitForSeconds(2);
+        cloudanimator.SetBool("scenechanged", true );
     }
 }

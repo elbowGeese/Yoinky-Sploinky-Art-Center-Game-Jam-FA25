@@ -121,6 +121,8 @@ public class DragPlant : MonoBehaviour
         {
             if (RectHelp.IsOverlapping(rectTransform, trash))
             {
+                trash.GetComponent<Trash>().trashsound();
+
                 Destroy(gameObject);
             }
         }

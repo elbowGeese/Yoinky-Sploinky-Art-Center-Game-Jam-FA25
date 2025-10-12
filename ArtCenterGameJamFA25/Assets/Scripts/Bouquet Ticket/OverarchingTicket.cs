@@ -8,6 +8,8 @@ public class OverarchingTicket : MonoBehaviour
 
     public int[] numberHave = new int [3];
 
+    public AudioSource chime;
+
     //public int points = 0; 
     
 
@@ -31,6 +33,8 @@ public bool TryToSubmit (string flowerName)
                     numberSpawnerRef[i].displayNumber(numberHave[i]);
 
                     TicketIsComplete();
+
+                    chime.Play(); 
 
                     return true;
                 }
