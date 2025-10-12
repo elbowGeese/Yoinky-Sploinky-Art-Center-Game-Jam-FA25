@@ -5,12 +5,14 @@ public class EndScreen : MonoBehaviour
 {
     public TextMeshProUGUI score;
     public TextMeshProUGUI bestscore;
+    public Animator cloudAnim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         score.text = "Final Score:" + PlayerPrefs.GetInt("MostRecentScore");
         bestscore.text = "Best Score:" + PlayerPrefs.GetInt("Highscore");
+        //cloudAnim.SetBool("scenechanged", true);
     }
 
     // Update is called once per frame
