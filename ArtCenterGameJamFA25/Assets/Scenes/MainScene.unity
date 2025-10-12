@@ -291,10 +291,10 @@ RectTransform:
   - {fileID: 516404738}
   m_Father: {fileID: 548415410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -795, y: -377}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -802.573, y: -458.512}
+  m_SizeDelta: {x: -1554.346, y: -746.782}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88814642
 MonoBehaviour:
@@ -309,14 +309,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 37.43, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6caa183a7d4c84a4f8cdc243399757e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -434,6 +434,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1798125695}
     m_Modifications:
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59c783b38b725c34a8c0958473c7b98c, type: 3}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_RaycastPadding.w
+      value: 26.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_RaycastPadding.x
+      value: 33.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_RaycastPadding.y
+      value: 33.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_RaycastPadding.z
+      value: 36.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2737136511769386932, guid: d74427f837f951942808f52c9aa86c76, type: 3}
       propertyPath: dragLayer
       value: 
@@ -1647,8 +1679,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4222cd3bead11a1408475374967ced04, type: 2}
+  m_sharedMaterial: {fileID: 6428621449169404762, guid: 4222cd3bead11a1408475374967ced04, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1905,7 +1937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerScript
   timerText: {fileID: 650432083}
-  remainingTime: 2
+  remainingTime: 100
   timesUp: {fileID: 1235128434}
   scoreScript: {fileID: 1627319155}
   cloudanimator: {fileID: 1956127538}
@@ -2466,12 +2498,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1798125695}
     m_Modifications:
     - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c03680cfc45f37f49941e9c0c1eb7f5b, type: 3}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
       propertyPath: m_Color.g
-      value: 0.85505235
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
       propertyPath: m_Color.r
@@ -3656,12 +3692,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1798125695}
     m_Modifications:
     - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d66fdaa4d3ae7b64cba7b3835b4a2910, type: 3}
+    - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
       propertyPath: m_Color.g
-      value: 0.13214315
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 969629441655679806, guid: d74427f837f951942808f52c9aa86c76, type: 3}
       propertyPath: m_Color.r
