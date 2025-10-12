@@ -10,6 +10,9 @@ public class TimerScript : MonoBehaviour
     public GameObject timesUp;
     public Score scoreScript;
     public Animator cloudanimator;
+    public float sloanWait;
+    public AudioSource gong;
+
     //public TextMeshProUGUI finalScore;
     //public TextMeshProUGUI bestScore;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,6 +36,8 @@ public class TimerScript : MonoBehaviour
             remainingTime = 0;
             timesUp.SetActive(true);
             
+            gong.Play();
+
             StartCoroutine(EndSequence());
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
@@ -44,7 +49,7 @@ public class TimerScript : MonoBehaviour
     IEnumerator EndSequence()
     {
         cloudanimator.SetBool("timesup", true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(sloanWait);
         SceneManager.LoadScene("End Scene");
         yield return new WaitForSeconds(2);
         cloudanimator.SetBool("scenechanged", true );
