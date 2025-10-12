@@ -29,6 +29,7 @@ public class PlantScript : MonoBehaviour
 
     void Start()
     {
+        SunlightScript = FindFirstObjectByType<SunlightStates>();
         isGrown = false;
     }
 

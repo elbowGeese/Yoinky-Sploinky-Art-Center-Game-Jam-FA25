@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class SeedSlotSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Prefab & Layers")]
-    public SeedInstance seedPrefab;  
+    public GameObject seedPrefab;  
     public RectTransform dragLayer;   
 
     [Header("Visual")]
@@ -27,8 +27,8 @@ public class SeedSlotSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (currentSeed != null || seedPrefab == null || dragLayer == null) return;
 
         
-        currentSeed = Instantiate(seedPrefab, dragLayer);
-        if (currentSeed.image) currentSeed.image.color = seedColor;
+        currentSeed = Instantiate(seedPrefab, dragLayer).GetComponent<SeedInstance>();
+        //if (currentSeed.image) currentSeed.image.color = seedColor;
 
        
         currentSeed.Init(slotRect, dragLayer, canvas);

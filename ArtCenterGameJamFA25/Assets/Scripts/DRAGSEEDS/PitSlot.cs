@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PitSlot : MonoBehaviour
 {
-    public bool occupied { get; private set; }
+    public bool occupied { get { return currentFlower != null; } }
     [HideInInspector] public RectTransform rectTransform;
 
-    private SeedInstance currentSeed;
+    private GameObject currentFlower;
 
     void Awake()
     {
@@ -16,14 +16,18 @@ public class PitSlot : MonoBehaviour
     public bool TryPlace(SeedInstance seed)
     {
         if (occupied) return false;
-        occupied = true;
-        currentSeed = seed;
+        //occupied = true;
 
-        seed.transform.SetParent(transform, worldPositionStays: false);
-        seed.rectTransform.anchoredPosition = Vector2.zero;
+        currentFlower = Instantiate(seed.flowerPrefab, rectTransform);
+        Destroy(seed.gameObject);
+
+        //currentSeed = seed;
+
+        //seed.transform.SetParent(transform, worldPositionStays: false);
+        //seed.rectTransform.anchoredPosition = Vector2.zero;
 
       
-        if (seed.image) seed.image.raycastTarget = false;
+        //if (seed.image) seed.image.raycastTarget = false;
 
         return true;
     }
@@ -31,7 +35,7 @@ public class PitSlot : MonoBehaviour
 
     public void Vacate()
     {
-        occupied = false;
-        currentSeed = null;
+        //occupied = false;
+        //currentSeed = null;
     }
 }
