@@ -1937,7 +1937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerScript
   timerText: {fileID: 650432083}
-  remainingTime: 240
+  remainingTime: 60
   timesUp: {fileID: 1235128434}
   scoreScript: {fileID: 1627319155}
   cloudanimator: {fileID: 1956127538}
