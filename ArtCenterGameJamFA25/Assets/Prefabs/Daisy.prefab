@@ -674,9 +674,9 @@ MonoBehaviour:
   wantsSun: 0
   wantsMinSun: 0
   wantsNoSun: 0
-  minMoist: -50
-  maxMoist: 80
-  moisture: 50
+  minMoist: -25
+  maxMoist: 40
+  moisture: 20
   isGrown: 0
   plantGrowthMax: 50
   _animator: {fileID: -3621780784096064868}

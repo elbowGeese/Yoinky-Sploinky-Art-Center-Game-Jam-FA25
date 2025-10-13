@@ -50,6 +50,7 @@ public class TimerScript : MonoBehaviour
     {
         cloudanimator.SetBool("timesup", true);
         yield return new WaitForSeconds(sloanWait);
+        scoreScript.SaveScore();
         SceneManager.LoadScene("End Scene");
         yield return new WaitForSeconds(2);
         cloudanimator.SetBool("scenechanged", true );
