@@ -9,7 +9,7 @@ public class TicketSpawner : MonoBehaviour
     {
 
 
-       int tickets = FindObjectsOfType<OverarchingTicket>().Length;
+       int tickets = FindObjectsByType<OverarchingTicket>(FindObjectsSortMode.None).Length;
 
         if (tickets < 1 )
         {

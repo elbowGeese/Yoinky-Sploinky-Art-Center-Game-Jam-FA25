@@ -8,10 +8,12 @@ public class OverarchingTicket : MonoBehaviour
 
     public int[] numberHave = new int [3];
 
+    public AudioSource chime;
+
     //public int points = 0; 
     
 
-public void TryToSubmit (string flowerName)
+public bool TryToSubmit (string flowerName)
     {
         //foreach (A_WordSpawner wordSpawner in wordSpawnerRef)
         //{
@@ -23,7 +25,7 @@ public void TryToSubmit (string flowerName)
 
         for (int i = 0; i < wordSpawnerRef.Length; i ++  )
         {
-            if (flowerName == wordSpawnerRef [i] .flowerName )
+            if (flowerName == wordSpawnerRef[i].flowerName )
             {
                 if (numberHave[i] < numberSpawnerRef[i].amountNeeded)
                 {
@@ -32,10 +34,14 @@ public void TryToSubmit (string flowerName)
 
                     TicketIsComplete();
 
-                    return;
+                    chime.Play(); 
+
+                    return true;
                 }
             }    
         }
+
+        return false;
     }
 
 private void TicketIsComplete ()
@@ -64,26 +70,26 @@ private void TicketIsComplete ()
 
 private int GetPointValue (string plantName)
     {
-        if (plantName == "Rose")
-        {
-            return PointDataManager.rosePoints;
-        }
-        if (plantName == "Tulip")
-        {
-            return PointDataManager.tulipPoints;
-        }
-        if (plantName == "Baby's Breath")
-        {
-            return PointDataManager.babyPoints;
-        }
         if (plantName == "Daisy")
         {
             return PointDataManager.daisyPoints;
         }
-        if (plantName == "Lily")
+        if (plantName == "Peony")
         {
-            return PointDataManager.lilyPoints;
+            return PointDataManager.peonyPoints;
         }
+        if (plantName == "Jasmine")
+        {
+            return PointDataManager.jasminePoints;
+        }
+        //if (plantName == "Daisy")
+        //{
+        //    return PointDataManager.daisyPoints;
+        //}
+        //if (plantName == "Lily")
+        //{
+        //    return PointDataManager.lilyPoints;
+        //}
         return (0);
     }
 

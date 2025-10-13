@@ -8,6 +8,7 @@ public class MousePosition : MonoBehaviour
     public Vector2 screenPosition;
 
     public bool isMouseDown;
+    public bool onMouseDown;
 
     // Update is called once per frame
     void Update()
@@ -16,6 +17,8 @@ public class MousePosition : MonoBehaviour
       screenPosition =  Mouse.current.position.ReadValue();
 
         isMouseDown = Mouse.current.leftButton.isPressed;
+
+        onMouseDown = Mouse.current.leftButton.wasPressedThisFrame;
 
     }
 

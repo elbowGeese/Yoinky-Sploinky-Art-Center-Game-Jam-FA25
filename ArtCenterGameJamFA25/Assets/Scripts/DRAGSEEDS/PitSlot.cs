@@ -1,43 +1,41 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PitSlot: MonoBehaviour
+public class PitSlot : MonoBehaviour
 {
-    public bool occupied { get; private set; }
+    public bool occupied { get { return currentFlower != null; } }
     [HideInInspector] public RectTransform rectTransform;
 
-    [Header("Visual")]
-    [SerializeField] private Color highlightColor = new Color(0.8f, 1f, 0.8f);
-
-    private Color baseColor;
-    private Image img;
-    private SeedInstance currentSeed;
+    private GameObject currentFlower;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        img = GetComponent<Image>();
-        baseColor = img ? img.color : Color.white;
     }
 
+    
     public bool TryPlace(SeedInstance seed)
     {
         if (occupied) return false;
-        occupied = true;
-        currentSeed = seed;
+        //occupied = true;
 
-        seed.transform.SetParent(transform, worldPositionStays: false);
-        seed.rectTransform.anchoredPosition = Vector2.zero;
+        currentFlower = Instantiate(seed.flowerPrefab, rectTransform);
+        Destroy(seed.gameObject);
 
-        if (img) img.color = highlightColor;
-        if (seed.image) seed.image.raycastTarget = false;
+        //currentSeed = seed;
+
+        //seed.transform.SetParent(transform, worldPositionStays: false);
+        //seed.rectTransform.anchoredPosition = Vector2.zero;
+
+      
+        //if (seed.image) seed.image.raycastTarget = false;
+
         return true;
     }
 
+
     public void Vacate()
     {
-        occupied = false;
-        currentSeed = null;
-        if (img) img.color = baseColor;
+        //occupied = false;
+        //currentSeed = null;
     }
 }

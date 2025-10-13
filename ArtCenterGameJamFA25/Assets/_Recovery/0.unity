@@ -448,6 +448,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedSlotSpawner
   seedPrefab: {fileID: 7577503627723694455, guid: 14846a915138c264481e1be7c96a857e, type: 3}
+  dragLayer: {fileID: 0}
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  flowerSprite: {fileID: 0}
+  spawnFromSlotCenter: 1
 --- !u!61 &434054605
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -817,6 +821,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedSlotSpawner
   seedPrefab: {fileID: 7577503627723694455, guid: 14846a915138c264481e1be7c96a857e, type: 3}
+  dragLayer: {fileID: 0}
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  flowerSprite: {fileID: 0}
+  spawnFromSlotCenter: 1
 --- !u!61 &727569572
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1723,10 +1731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78bf7c998c958a40a194d66d3b2b340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragManager
-  pitLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  pitSnapRadius: 0.3
 --- !u!4 &1386481340
 Transform:
   m_ObjectHideFlags: 0
@@ -1897,6 +1901,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SeedSlotSpawner
   seedPrefab: {fileID: 7577503627723694455, guid: 14846a915138c264481e1be7c96a857e, type: 3}
+  dragLayer: {fileID: 0}
+  seedColor: {r: 1, g: 1, b: 1, a: 1}
+  flowerSprite: {fileID: 0}
+  spawnFromSlotCenter: 1
 --- !u!1 &1880528491
 GameObject:
   m_ObjectHideFlags: 0
