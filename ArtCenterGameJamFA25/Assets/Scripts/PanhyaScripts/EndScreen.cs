@@ -16,28 +16,28 @@ public class EndScreen : MonoBehaviour
         score.text = "Final Score: " + PlayerPrefs.GetInt("MostRecentScore");
         bestscore.text = "Best Score: " + PlayerPrefs.GetInt("Highscore");
         //cloudAnim.SetBool("scenechanged", true);
+        if (PlayerPrefs.GetInt("MostRecentScore") >= 1000)
+        {
+            best.SetActive(true);
+            return;
+        }
+        if (PlayerPrefs.GetInt("MostRecentScore") >= 600)
+        {
+            average.SetActive(true);
+            return ;
+        }
+
+        if (PlayerPrefs.GetInt("MostRecentScore") < 600 )
+        {
+            bad.SetActive(true);
+            return;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPrefs.GetInt("MostRecentScore") >= 600)
-        {
-            average.SetActive(true);
-
-        }
-
-        if (PlayerPrefs.GetInt("MostRecentScore") < 600)
-        {
-            bad.SetActive(true);
-
-        }
-
-        if (PlayerPrefs.GetInt("MostRecentScore") >= 1000)
-        {
-            best.SetActive(true);
-
-        }
 
     }
 }
