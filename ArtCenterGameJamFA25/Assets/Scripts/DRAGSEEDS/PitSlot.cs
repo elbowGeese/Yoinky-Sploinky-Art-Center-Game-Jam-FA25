@@ -2,70 +2,40 @@ using UnityEngine;
 
 public class PitSlot : MonoBehaviour
 {
-    public bool occupied { get; private set; }
-    private SeedInstance currentSeed;
+    public bool occupied { get { return currentFlower != null; } }
+    [HideInInspector] public RectTransform rectTransform;
 
-    [Header("Placement")]
-    public Transform anchor;                 
-    public Vector3 localOffset = Vector3.zero; 
-
-    private SpriteRenderer sr;
-    private Color baseColor;
-    public Color canColor = new Color(0.7f, 1f, 0.7f);
-    public Color cannotColor = new Color(1f, 0.7f, 0.7f);
+    private GameObject currentFlower;
 
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
-        if (sr) baseColor = sr.color;
-
-        if (!anchor)
-        {
-            var a = transform.Find("SeedAnchor");
-            if (a) anchor = a;
-        }
+        rectTransform = GetComponent<RectTransform>();
     }
 
+    
     public bool TryPlace(SeedInstance seed)
     {
         if (occupied) return false;
-        occupied = true;
-        currentSeed = seed;
+        //occupied = true;
 
-       
-        Transform parentT = anchor ? anchor : transform;
-        seed.transform.SetParent(parentT, /*worldPositionStays:*/ true);
+        currentFlower = Instantiate(seed.flowerPrefab, rectTransform);
+        Destroy(seed.gameObject);
 
-        
-        Vector3 worldTarget = parentT.TransformPoint(localOffset);
-        seed.transform.position = worldTarget;
-        seed.transform.rotation = Quaternion.identity; 
-       
+        //currentSeed = seed;
 
-        
-        var col = seed.GetComponent<Collider2D>(); if (col) col.enabled = false;
-        var rb = seed.GetComponent<Rigidbody2D>(); if (rb) rb.simulated = false;
+        //seed.transform.SetParent(transform, worldPositionStays: false);
+        //seed.rectTransform.anchoredPosition = Vector2.zero;
 
-        seed.SetPlaced(this);
-        SetNormal();
+      
+        //if (seed.image) seed.image.raycastTarget = false;
+
         return true;
     }
 
+
     public void Vacate()
     {
-        occupied = false;
-        currentSeed = null;
-        SetNormal();
-    }
-
-    public void SetHighlight(bool canPlace)
-    {
-        if (!sr) return;
-        sr.color = canPlace ? canColor : cannotColor;
-    }
-    public void SetNormal()
-    {
-        if (!sr) return;
-        sr.color = baseColor;
+        //occupied = false;
+        //currentSeed = null;
     }
 }

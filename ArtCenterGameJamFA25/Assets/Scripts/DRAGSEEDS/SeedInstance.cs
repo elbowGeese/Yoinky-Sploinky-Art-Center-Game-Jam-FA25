@@ -1,68 +1,194 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SeedInstance : MonoBehaviour
 {
-    private bool isDragging;
-    private Vector3 dragOffset;
-    private Camera cam;
-    private PitSlot placedPit;
+    [Header("Snap / Magnet")]
+    public float snapRadiusScreenPx; 
+    public float magnetStrength;  
+    public float snapTime = 0.12f;  
+    public float returnTime = 0.18f;  
 
-    private Vector3 originPos;
-    private Transform returnTarget;
+    [Header("Flower")]
+    public Sprite flowerSprite;              
+    [Range(0.1f, 3f)]
+    public float flowerScaleMultiplier = 1.2f;
 
-    public void Init(Vector3 origin, Transform returnTarget)
-    {
-        this.originPos = origin;
-        this.returnTarget = returnTarget;
-    }
+    [Header("Flower Prefab")]
+    public GameObject flowerPrefab;
+
+    [HideInInspector] public RectTransform rectTransform;
+    //[HideInInspector] public Image image;
+    [HideInInspector] public Canvas parentCanvas;
+
+
+    RectTransform dragLayer;           
+    RectTransform slotRect;          
+    Vector2 slotAnchoredInDrag;   
+
+   
+    [HideInInspector] public PitSlot currentHoverPit;
 
     void Awake()
     {
-        cam = Camera.main;
+        rectTransform = GetComponent<RectTransform>();
+        //image = GetComponent<Image>();
+        parentCanvas = GetComponentInParent<Canvas>();
     }
 
-    public void BeginDrag(Vector3 worldMousePos)
+    
+    public void Init(RectTransform fromSlot, RectTransform dragLayer, Canvas canvas)
     {
-        isDragging = true;
-        dragOffset = transform.position - worldMousePos;
+        this.slotRect = fromSlot;
+        this.dragLayer = dragLayer;
+        this.parentCanvas = canvas;
+
+      
+        slotAnchoredInDrag = WorldToAnchored(dragLayer, slotRect.position);
     }
 
-    public void UpdateDragging(Vector3 worldMousePos)
+ 
+    public void HandleBeginDrag(PointerEventData eventData, RectTransform dragLayer)
     {
-        if (!isDragging) return;
-        Vector3 target = worldMousePos + dragOffset;
-        target.z = 0f;
-        transform.position = target;
+        transform.SetParent(dragLayer, worldPositionStays: false);
+        UpdatePosition(eventData.position);
     }
 
-    public void EndDrag(bool placed)
+   
+    public void HandleDrag(PointerEventData eventData)
     {
-        isDragging = false;
+        Vector2 mouseAnchored = ScreenToAnchored(dragLayer, eventData.position);
+        Vector2 target = mouseAnchored;
 
-        if (!placed && placedPit == null)
+        if (currentHoverPit != null)
         {
-            StartCoroutine(ReturnAndDestroy(0.2f));
+            Vector2 pitScreen = RectTransformUtility.WorldToScreenPoint(parentCanvas.worldCamera, currentHoverPit.rectTransform.position);
+            float dist = Vector2.Distance(eventData.position, pitScreen);
+
+            if (dist <= snapRadiusScreenPx && !currentHoverPit.occupied)
+            {
+                Vector2 pitAnchored = ScreenToAnchored(dragLayer, pitScreen);
+                float t = Mathf.Clamp01(1f - dist / snapRadiusScreenPx); 
+                float strength = magnetStrength * t;
+                target = Vector2.Lerp(mouseAnchored, pitAnchored, strength);
+            }
         }
+
+        rectTransform.anchoredPosition = target;
     }
 
-    public void SetPlaced(PitSlot pit)
+
+    public void HandleEndDrag(PointerEventData eventData)
     {
-        placedPit = pit;
-        isDragging = false;
+        PitSlot targetPit = null;
+        if (currentHoverPit != null && !currentHoverPit.occupied)
+        {
+            Vector2 pitScreen = RectTransformUtility.WorldToScreenPoint(parentCanvas.worldCamera, currentHoverPit.rectTransform.position);
+            float dist = Vector2.Distance(eventData.position, pitScreen);
+            if (dist <= snapRadiusScreenPx) targetPit = currentHoverPit;
+        }
+
+        if (targetPit != null)
+        {
+            
+            Vector2 pitAnchored = WorldToAnchored(dragLayer, targetPit.rectTransform.position);
+            StartCoroutine(TweenAnchored(rectTransform.anchoredPosition, pitAnchored, snapTime, () =>
+            {
+                targetPit.TryPlace(this);  
+                //MorphToFlower(true);        
+            }));
+        }
+        else
+        {
+          
+            StartCoroutine(TweenAnchored(rectTransform.anchoredPosition, slotAnchoredInDrag, returnTime, () =>
+            {
+                Destroy(gameObject);
+            }));
+        }
+
+        currentHoverPit = null;
     }
 
-    private IEnumerator ReturnAndDestroy(float duration)
+   
+    //public void MorphToFlower(bool playBloom)
+    //{
+        //if (image == null) return;
+
+       
+        //Vector2 baseSize = rectTransform.sizeDelta;
+
+        //if (flowerSprite != null)
+        //{
+            //image.sprite = flowerSprite;
+        //}
+
+      
+       // rectTransform.sizeDelta = baseSize * Mathf.Max(0.01f, flowerScaleMultiplier);
+
+       
+        //image.raycastTarget = false;
+
+      
+        //if (playBloom)
+            //StartCoroutine(Bloom(0.1f, 0.85f, 1f));
+    //}
+
+   
+    IEnumerator Bloom(float duration, float fromScale, float toScale)
     {
-        Vector3 start = transform.position;
-        Vector3 end = returnTarget ? returnTarget.position : originPos;
+        float t = 0f;
+        Vector3 from = Vector3.one * fromScale;
+        Vector3 to = Vector3.one * toScale;
+
+        while (t < 1f)
+        {
+            t += Time.unscaledDeltaTime / Mathf.Max(0.0001f, duration);
+            float ease = 1f - Mathf.Cos(t * Mathf.PI * 0.5f);
+            rectTransform.localScale = Vector3.LerpUnclamped(from, to, ease);
+            yield return null;
+        }
+        rectTransform.localScale = Vector3.one;
+    }
+
+  
+    private void UpdatePosition(Vector2 screenPos)
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            dragLayer,
+            screenPos,
+            parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : parentCanvas.worldCamera,
+            out var local);
+        rectTransform.anchoredPosition = local;
+    }
+
+    Vector2 ScreenToAnchored(RectTransform parent, Vector2 screenPos)
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            parent, screenPos,
+            parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : parentCanvas.worldCamera,
+            out var local);
+        return local;
+    }
+
+    Vector2 WorldToAnchored(RectTransform parent, Vector3 worldPos)
+    {
+        Vector2 screen = RectTransformUtility.WorldToScreenPoint(parentCanvas.worldCamera, worldPos);
+        return ScreenToAnchored(parent, screen);
+    }
+
+    IEnumerator TweenAnchored(Vector2 from, Vector2 to, float dur, System.Action onComplete)
+    {
         float t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime / duration;
-            transform.position = Vector3.Lerp(start, end, t);
+            t += Time.unscaledDeltaTime / Mathf.Max(0.0001f, dur);
+            float ease = 1f - Mathf.Cos(t * Mathf.PI * 0.5f);
+            rectTransform.anchoredPosition = Vector2.LerpUnclamped(from, to, ease);
             yield return null;
         }
-        Destroy(gameObject);
+        onComplete?.Invoke();
     }
 }

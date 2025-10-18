@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlantScript : MonoBehaviour
 {
+    public string plantName = "Daisy";
+
     public SunlightStates SunlightScript;
     public float plantGrowth;
     public bool wantsMaxSun;
@@ -17,33 +19,38 @@ public class PlantScript : MonoBehaviour
     public float plantGrowthMax;
 
     public Animator _animator;
+
+    public AudioSource heatdeath, flooddeath;
+
     // animation bools
     //public bool isBurnt;
     //public bool isDrowned;
     //public bool growth2;
     //public bool growth3;
     //public bool growth4;
-    //public bool isDead;
+    public bool isDead = false;
 
-
+    public bool isPaused = false;
 
     void Start()
     {
+        SunlightScript = FindFirstObjectByType<SunlightStates>();
         isGrown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isPaused) return;
         
-            float timePassed = Time.deltaTime;
+        float timePassed = Time.deltaTime;
 
 
 
-            mGrowth(timePassed);
-            Grow(timePassed);
-            DecayFunction(timePassed);
-            MaxDecayFunction(timePassed);
+        mGrowth(timePassed);
+        Grow(timePassed);
+        DecayFunction(timePassed);
+        MaxDecayFunction(timePassed);
         
         
 
@@ -78,11 +85,23 @@ public class PlantScript : MonoBehaviour
         {
             _animator.SetBool("isWaterDead", true);
 
+            if (isDead == false)
+            {
+                flooddeath.Play();
+                isDead = true;
+            }
+
         }
 
         if (moisture <= minMoist)
         {
             _animator.SetBool("isBurntDead", true);
+
+            if (isDead == false)
+            {
+                heatdeath.Play();
+                isDead = true;
+            }
         }
 
 
